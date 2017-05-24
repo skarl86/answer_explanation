@@ -7,7 +7,7 @@ PREFIX xbr: <http://xb.saltlux.com/resource/>
 PREFIX xbc: <http://xb.saltlux.com/schema/class/>
 PREFIX xbv: <http://xb.saltlux.com/schema/vocab/>
 
-SELECT ?X, ?Y
+SELECT ?Y
 WHERE
 {
     ?X xbp:child ?C .
