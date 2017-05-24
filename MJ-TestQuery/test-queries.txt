@@ -1,0 +1,169 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX xbp: <http://xb.saltlux.com/schema/property/>
+PREFIX xbr: <http://xb.saltlux.com/resource/>
+PREFIX xbc: <http://xb.saltlux.com/schema/class/>
+PREFIX xbv: <http://xb.saltlux.com/schema/vocab/>
+
+
+## condition 3 ##################################
+
+
+# [1]
+# find wife ?Y
+# inferred conditions : 1, 3 line
+
+SELECT ?Y
+WHERE
+{
+    ?X xbp:child ?C .
+    ?X xbp:father ?C .
+    ?X xbp:spouse ?Y .
+}
+# 1. xbp:child inferrence rule
+#   xbp:parent(?b, ?a) -> xbp:child(?a, ?b)
+#   xbp:parent(?b, ?f) ^ xbp:spouse(?a, ?f) -> xbp:child(?a, ?b)
+#   xbp:child(?f,?b)^xbp:spouse(?a,?f) -> xbp:child(?a,?b)
+# 2. xbp:father inffrence rule
+
+
+# [2]
+# find mother has more than 2 child.
+# inferred conditions : 3 line
+
+SELECT ?F
+WHERE
+{
+    ?F xbp:child ?A .
+    ?B xbp:mother ?F .
+    ?A xbp:sibling ?B .
+}
+
+
+
+# [3]
+# find ?A nationality ?B
+# inferred conditions : 3 line
+
+SELECT ?A, ?B
+WHERE
+{
+    ?F xbp:sp_withIn ?B .
+    ?A xbp:bornIn ?F .
+    ?A xbp:livedIn ?B .
+}
+
+
+
+# [4]
+# find Painter ?A
+# inferred conditions : 2 line
+
+SELECT ?A
+WHERE
+{
+  ?B xbp:director ?A .
+  ?A xbp:creation ?B .
+  ?A rdf:type xbc:painting_03730240 .
+}
+
+
+
+# [5]
+# find ?X's language
+# inferred conditions : 2 line
+
+SELECT ?X, ?B
+WHERE
+{
+  ?E xbp:capital ?A .
+  ?A xbp:language ?B .
+  ?X xbp:bornIn ?A .
+}
+
+
+
+## condition 5 ##################################
+
+
+
+# [6]
+# find friends in same school
+# inferred conditions : 5 line
+
+SELECT ?X, ?Z
+WHERE
+{
+  ?X rdf:type xbc:person_00006026 .
+  ?Z rdf:type xbc:person_00006026 .
+  ?X xbp:education ?Y .
+  ?Z xbp:education ?Y .
+  ?X xbp:relatedPerson ?Z .
+}
+
+
+
+# [7]
+# find ?Z's father ?X
+# inferred conditions : 5 line
+
+SELECT ?Z, ?X
+WHERE
+{
+  ?X rdf:type xbc:person_00006026 .
+  ?Y rdf:type xbc:person_00006026 .
+  ?Z rdf:type xbc:person_00006026 .
+  ?X xbp:wife ?Y .
+  ?Z xbp:mother ?Y .
+}
+
+
+
+# [8]
+# find near country where ?P lived.
+# inferred conditions : 4, 5 line
+
+SELECT ?P, ?Y
+WHERE
+{
+  ?X rdf:type xbc:state_07673557 .
+  ?Y rdf:type xbc:state_07673557 .
+  ?X xbp:sp_touches ?Y .
+  ?Y xbp:nearCountry ?X .
+  ?P xbp:nationality ?X .
+}
+
+
+
+# [9]
+# find the country where ?B is made.
+# inferred conditions : 3, 4, 5 line
+
+SELECT ?B, ?L
+WHERE
+{
+  ?A rdf:type xbc:person_00006026 .
+  ?A xbp:creation ?B .
+  ?B rdf:type xbc:show_06210248 .
+  ?B xbp:director ?A .
+  ?A xbp:livedIn ?L .
+}
+
+
+
+# [10]
+# find the Aunt Granny of ?A
+# inferred conditions : 4, 5, 6 line
+
+SELECT ?A, ?D
+WHERE
+{
+  ?A rdf:type xbc:person_00006026 .
+  ?B rdf:type xbc:person_00006026 .
+  ?C rdf:type xbc:person_00006026 .
+  ?A xbp:father ?B .
+  ?B xbp:mother ?C .
+  ?C xbp:sister ?D .
+}
