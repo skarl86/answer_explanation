@@ -16,10 +16,10 @@ LUBM에서 제공한 14개의 테스트 질의문을 사용하여 평가했다. 
 3. Reasoner를 통해 추론 된 Triple과 Input Triple를 가지고 HDFS상에 SPARQLGX DB를 생성.
 
 <pre><code>bash load.sh dbName swrl_rule.txt hdfs_triple_file.nt hdfs_inf_triple_file.nt</code></pre>
-- dbName : HDFS상에 저장되는 SPARQLGX Load 결과 경로.
-- swrl_rule.txt : SWRL Reasoner에 사용 될 규칙.
-- hdfs_triple_file.nt : HDFS상의 초기 트리플.
-- hdfs_inf_triple_file.nt : HDFS상의 추론 트리플.
+- <code>dbName</code> : HDFS상에 저장되는 SPARQLGX Load 결과 경로.
+- <code>swrl_rule.txt</code> : SWRL Reasoner에 사용 될 규칙.
+- <code>hdfs_triple_file.nt</code> : HDFS상의 초기 트리플.
+- <code>hdfs_inf_triple_file.nt</code> : HDFS상의 추론 트리플.
 
 ## 1.2 Execute
 1. Load를 통해 만들어진 SPARQLGX DB를 불러와 Query를 실행 후 Query 결과를 HDFS상에 저장.
@@ -27,9 +27,9 @@ LUBM에서 제공한 14개의 테스트 질의문을 사용하여 평가했다. 
 
 <pre><code>bash run.sh dbName query_file.rq </code></pre>
 - <code>dbName</code> : HDFS상에 저장되는 SPARQLGX Load 결과 경로.
-- query_file.rq : SPARQL 기반의 질의 파일.
+- <code>query_file.rq</code> : SPARQL 기반의 질의 파일.
 
 # 작성자
 이 남기
 <beohemian@gmail.com>
-숭실대학교 [인공지능연구실] 2017.
+숭실대학교 [인공지능연구실](http://ailab.ssu.ac.kr/rb/) 2017.
