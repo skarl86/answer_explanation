@@ -7,10 +7,8 @@ PREFIX xbr: <http://xb.saltlux.com/resource/>
 PREFIX xbc: <http://xb.saltlux.com/schema/class/>
 PREFIX xbv: <http://xb.saltlux.com/schema/vocab/>
 
-SELECT ?F
+SELECT ?X, ?Z
 WHERE
 {
-    ?F xbp:child ?A .
-    ?B xbp:mother ?F .
-    ?A xbp:sibling ?B .
+  ?X xbp:relatedPerson ?Z .
 }

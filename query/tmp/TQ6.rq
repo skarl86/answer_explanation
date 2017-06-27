@@ -10,9 +10,5 @@ PREFIX xbv: <http://xb.saltlux.com/schema/vocab/>
 SELECT ?X, ?Z
 WHERE
 {
-  ?X rdf:type xbc:person_00006026 .
-  ?Z rdf:type xbc:person_00006026 .
-  ?X xbp:education ?Y .
-  ?Z xbp:education ?Y .
   ?X xbp:relatedPerson ?Z .
 }

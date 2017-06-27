@@ -7,10 +7,12 @@ PREFIX xbr: <http://xb.saltlux.com/resource/>
 PREFIX xbc: <http://xb.saltlux.com/schema/class/>
 PREFIX xbv: <http://xb.saltlux.com/schema/vocab/>
 
-SELECT ?Y
+SELECT ?Z, ?X
 WHERE
 {
-    ?X xbp:child ?C .
-    ?C xbp:father ?X .
-    ?X xbp:spouse ?Y .
+  ?X rdf:type xbc:person_00006026 .
+  ?Y rdf:type xbc:person_00006026 .
+  ?Z rdf:type xbc:person_00006026 .
+  ?X xbp:wife ?Y .
+  ?Z xbp:mother ?Y .
 }

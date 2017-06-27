@@ -7,10 +7,8 @@ PREFIX xbr: <http://xb.saltlux.com/resource/>
 PREFIX xbc: <http://xb.saltlux.com/schema/class/>
 PREFIX xbv: <http://xb.saltlux.com/schema/vocab/>
 
-SELECT ?A
+SELECT ?X, ?Z
 WHERE
 {
-  ?B xbp:director ?A .
-  ?A xbp:creation ?B .
-  ?A rdf:type xbc:painting_03730240 .
+  ?X xbp:relatedPerson ?Z .
 }
