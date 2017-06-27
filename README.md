@@ -15,7 +15,7 @@ LUBM에서 제공한 14개의 테스트 질의문을 사용하여 평가했다. 
 2. SWRL Reasoner에 Output이 HDFS 상에 atmsOutput 경로에 저장되고, 이 데이터를 기반으로 ATMS Build를 시작.
 3. Reasoner를 통해 추론 된 Triple과 Input Triple를 가지고 HDFS상에 SPARQLGX DB를 생성.
 
-<pre><code>bash load.sh sparqlgx_dbName swrl_rule.txt hdfs_triple_path hdfs_inf_triple_path</code></pre>
+<pre><code>bash bin/load.sh sparqlgx_dbName swrl_rule.txt hdfs_triple_path hdfs_inf_triple_path</code></pre>
 - <code>sparqlgx_dbName</code> : SPARQLGX DB 이름.(결과적으로 HDFS상의 경로명이다.)
 - <code>swrl_rule.txt</code> : SWRL Reasoner에 사용 될 규칙.
 - <code>hdfs_triple_path</code> : HDFS상의 초기 트리플 경로.
@@ -27,7 +27,7 @@ LUBM에서 제공한 14개의 테스트 질의문을 사용하여 평가했다. 
 1. Load를 통해 만들어진 SPARQLGX DB를 불러와 Query를 실행 후 Query 결과를 HDFS상에 저장.
 2. Query 결과를 가져와 Answer Explanation 실행.
 
-<pre><code>bash run.sh sparqlgx_dbName query_file.rq </code></pre>
+<pre><code>bash bin/run.sh sparqlgx_dbName query_file.rq </code></pre>
 - <code>sparqlgx_dbName</code> : HDFS상에 저장되는 SPARQLGX Load 결과 경로.
 - <code>query_file.rq</code> : SPARQL 기반의 질의 파일.
 
