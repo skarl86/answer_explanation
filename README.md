@@ -7,9 +7,9 @@ Answer Explantion
 2. SWRL Reasoner에 Output이 HDFS 상에 atmsOutput 경로에 저장되고, 이 데이터를 기반으로 ATMS Build를 시작.
 3. Reasoner를 통해 추론 된 Triple과 Input Triple를 가지고 HDFS상에 SPARQLGX DB를 생성.
 
-<pre><code>bash load.sh "sparqlgx dbname" "swrl rule path" "input triple path in HDFS" "inferred triple path in HDFS"</code></pre>
+<pre><code>bash load.sh "**sparqlgx dbname**" "**swrl rule path**" "**input triple path in HDFS**" "**inferred triple path in HDFS**"</code></pre>
 
 ## 1.2 Execute
 1. Load를 통해 만들어진 SPARQLGX DB를 불러와 Query를 실행 후 Query 결과를 HDFS상에 저장.
 2. Query 결과를 가져와 Answer Explanation 실행.
-<pre><code>bash run.sh "sparqlgx dbname" "query path"</code></pre>
+<pre><code>bash run.sh "**sparqlgx dbname**" "**query path**"</code></pre>
