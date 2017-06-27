@@ -37,7 +37,7 @@ object UnifyResult {
 
     val conf = new SparkConf()
       .setAppName("Unify Result")
-      .setMaster("local[*]")
+//      .setMaster("local[*]")
       .set("spark.io.compression.codec", "lz4")
       .set("spark.broadcast.compress", "true")
       .set("spark.locality.wait", "10000")
@@ -46,15 +46,15 @@ object UnifyResult {
       .set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
     val sc = new SparkContext(conf)
 
-//    val resultPath = args(0)      // Sparqlgx Query 결과. (HDFS)
-//    val queryPath = args(3)       // sparqlgx 돌린 Query File
-//    val tempResultPath = args(1)  // Sparqlgx Temp Query모든 Variable이 들어간) 결과. (HDFS)
-//    val tmpQueryPath = args(2)    // Sparqlgx 돌린 Temp Query File
+    val resultPath = args(0)
+    val queryPath = args(3)
+    val tempResultPath = args(1)
+    val tmpQueryPath = args(2)
 
-    val resultPath = "query_result"
-    val queryPath = "query/TQ1.rq"
-    val tmpQueryPath = "query/tmp/TQ1.rq"
-    val tempResultPath = "tmp_query_result"
+//    val resultPath = "query_result"
+//    val queryPath = "query/TQ1.rq"
+//    val tmpQueryPath = "query/tmp/TQ1.rq"
+//    val tempResultPath = "tmp_query_result"
 
 
     val queryFile = Source.fromFile(queryPath)
@@ -73,11 +73,12 @@ object UnifyResult {
     //    resultsList.foreach(println)
 
     printProgressTitle("=========== Answer Explanation ===========")
-//    val time0 = System.currentTimeMillis()
-    atms(sc, resultsList, unifiedAnswerTripleMap)
-//    val time1 = System.currentTimeMillis()
-//    val lapse = (time1 - time0)/unifiedAnswerTripleMap.size
-//    println("Time : " + lapse/1000 + "." + lapse%1000 + "sec")
+    val time0 = System.currentTimeMillis()
+    println("Answer Count : " + unifiedAnswerTripleMap.size)
+    atms(sc, unifiedAnswerTripleMap)
+    val time1 = System.currentTimeMillis()
+    val lapse = (time1 - time0)/unifiedAnswerTripleMap.size
+    println("Time : " + lapse/1000 + "." + lapse%1000 + "sec")
   }
 
   /**
@@ -280,11 +281,9 @@ object UnifyResult {
   /**
     *
     * @param sc
-    * @param queryResultList
     * @param unifiedTripleMap
     */
-  def atms(sc: SparkContext, queryResultList: List[String],
-           unifiedTripleMap:mutable.HashMap[String, ArrayBuffer[List[String]]]): Unit = {
+  def atms(sc: SparkContext, unifiedTripleMap:mutable.HashMap[String, ArrayBuffer[List[String]]]): Unit = {
 
     var indexedHolds: IndexedRDD[String, Set[Set[Int]]] = null
     var indexedAssumptions: IndexedRDD[Long, String] = null
@@ -331,7 +330,7 @@ object UnifyResult {
                 .map { case (assumId, assumTriple) => (assumId.toInt, assumTriple) }
 
             var count = 0
-            printExp3(removeURI(nodename).replace("><", "> <"))
+//            printExp3(removeURI(nodename).replace("><", "> <"))
             for (env <- envs) {
               if (env.size != 1) {
                 for (a <- env) {
@@ -341,7 +340,7 @@ object UnifyResult {
                 }
                 count += 1
               }
-              println()
+//              println()
             }
           } catch {
             case e: Exception => {
