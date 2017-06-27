@@ -21,6 +21,9 @@ LUBM에서 제공한 14개의 테스트 질의문을 사용하여 평가했다. 
 - <code>hdfs_triple_path</code> : HDFS상의 초기 트리플 경로.
 - <code>hdfs_inf_triple_path</code> : HDFS상의 추론 트리플 경로.
 
+예)
+<code> bash bin/load.sh nk-lubm1k swrl_rule/nk-lubm-rule.txt LUBM/lubm1000 nk </code>
+
 ## 1.2 Execute
 1. Load를 통해 만들어진 SPARQLGX DB를 불러와 Query를 실행 후 Query 결과를 HDFS상에 저장.
 2. Query 결과를 가져와 Answer Explanation 실행.
@@ -28,7 +31,8 @@ LUBM에서 제공한 14개의 테스트 질의문을 사용하여 평가했다. 
 <pre><code>bash run.sh sparqlgx_dbName query_file.rq </code></pre>
 - <code>sparqlgx_dbName</code> : HDFS상에 저장되는 SPARQLGX Load 결과 경로.
 - <code>query_file.rq</code> : SPARQL 기반의 질의 파일.
-
+예)
+<code> bash bin/run.sh nk-lubm1k query/lubm/Q1.rq
 # 작성자
 이 남기
 <beohemian@gmail.com>
