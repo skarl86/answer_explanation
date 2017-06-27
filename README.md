@@ -26,7 +26,7 @@ LUBM에서 제공한 14개의 테스트 질의문을 사용하여 평가했다. 
 2. Query 결과를 가져와 Answer Explanation 실행.
 
 <pre><code>bash run.sh dbName query_file.rq </code></pre>
-- dbName : HDFS상에 저장되는 SPARQLGX Load 결과 경로.
+- <code>dbName</code> : HDFS상에 저장되는 SPARQLGX Load 결과 경로.
 - query_file.rq : SPARQL 기반의 질의 파일.
 
 # 작성자
